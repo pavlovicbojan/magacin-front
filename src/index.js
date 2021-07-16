@@ -6,6 +6,10 @@ import { Navbar, Nav, Button, Container} from 'react-bootstrap';
 import NotFound from './components/NotFound';
 import Login from './components/authorization/Login';
 import {logout} from './services/auth';
+import Artikli from './components/artikli/Artikli';
+import AddArtikli from './components/artikli/AddArtikli';
+import EditArtikal from './components/artikli/EditArtikal';
+import AddPrijem from './components/prijem/Prijem';
 
 class App extends React.Component {
 
@@ -18,10 +22,12 @@ class App extends React.Component {
               <Router>
                   <Navbar expand bg="dark" variant="dark">
                       <Navbar.Brand as={Link} to="/">
-                          HOME
+                          MAGACIN
+                      </Navbar.Brand>
+                      <Navbar.Brand as={Link} to="/artikli">
+                        Artikli
                       </Navbar.Brand>
                       <Nav>
-                      
                       <Button onClick={()=>logout()}>Logout</Button>:
                       </Nav>
                   </Navbar>
@@ -29,7 +35,10 @@ class App extends React.Component {
                   <Switch>
                       <Route exact path="/" component={Home} />
                       <Route exact path="/login" render={()=><Redirect to="/"/>} />
-                     
+                     <Route exact path="/artikli" component={Artikli} />
+                     <Route exact path="/artikli/add" component={AddArtikli}/>
+                     <Route exact path="/artikli/edit/:id" component={EditArtikal}/>
+                     <Route exact path="/prijem/add/:id" component={AddPrijem}/>
                       <Route component={NotFound} />
                   </Switch>
               </Container>
